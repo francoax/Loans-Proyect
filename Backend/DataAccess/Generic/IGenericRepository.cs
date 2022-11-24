@@ -7,7 +7,7 @@ namespace Backend.Data.Generic
         TEntity Add(TEntity entity);
         TEntity GetById(int id);
         TEntity Update(TEntity entity);
-        TEntity Delete(int id);
+        void Delete(TEntity entity);
         List<TEntity> GetAll();
     }
 }

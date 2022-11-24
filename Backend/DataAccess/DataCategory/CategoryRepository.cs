@@ -11,5 +11,10 @@ namespace Backend.DataAccess.DataCategory
         {
             return (Category) context.Categories.Where(c => c.Description == desc);
         }
+
+        public bool Exists(Category category)
+        {
+            return context.Categories.Where((c) => c.Description == category.Description).Any();
+        }
     }
 }

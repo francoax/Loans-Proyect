@@ -11,11 +11,11 @@ namespace Backend.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>()
-                .Property(c => c.CreationDateBase)
+                .Property(c => c.CreationDate)
                 .HasDefaultValue(DateTime.UtcNow);
 
             modelBuilder.Entity<Thing>()
-                .Property(t => t.CreationDateBase)
+                .Property(t => t.CreationDate)
                 .HasDefaultValue(DateTime.UtcNow);
         }
 

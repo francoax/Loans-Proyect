@@ -1,5 +1,6 @@
 using Backend.Data.UOW;
 using Backend.DataAccess;
+using Backend.Services.PeopleService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddAuthorization();
 
 //Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IPeopleService, PeopleService>();
 
 //DbContext
 builder.Services.AddDbContext<ThingsContext>(options => {

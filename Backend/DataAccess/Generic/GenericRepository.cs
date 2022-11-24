@@ -21,9 +21,9 @@ namespace Backend.Data.Generic
             return newEntity.Entity;
         }
 
-        public TEntity Delete(int id)
+        public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            dbSet.Remove(entity);
         }
 
         public TEntity Update(TEntity entity)
@@ -33,12 +33,14 @@ namespace Backend.Data.Generic
 
         public List<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            List<TEntity> entities = new List<TEntity>();
+            entities = dbSet.ToList();
+            return entities;
         }
 
-        public TEntity GetById(int id)
+        public TEntity? GetById(int id)
         {
-            throw new NotImplementedException();
+            return dbSet.FirstOrDefault(e => e.Id == id);
         }
 
     }
