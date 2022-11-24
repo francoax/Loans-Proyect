@@ -1,7 +1,23 @@
+using Backend.Data.UOW;
+using Backend.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
+
+builder.Services.AddAuthorization();
+
+
+//Services
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+//DbContext
+builder.Services.AddDbContext<ThingsContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ThingsContextConnection"));
+    });
 
 var app = builder.Build();
 
@@ -19,6 +35,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
