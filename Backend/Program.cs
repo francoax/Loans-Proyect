@@ -15,6 +15,7 @@ builder.Services.AddAuthorization();
 //Services
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IPeopleService, PeopleService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //DbContext
 builder.Services.AddDbContext<ThingsContext>(options => {

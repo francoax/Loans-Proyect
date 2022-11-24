@@ -9,6 +9,6 @@ namespace Backend.Data.UOW
         ICategoryRepository CategoryRepository { get; }
         IThingRepository ThingRepository { get; }
         IPeopleRepository PeopleRepository { get; }
-        int CompleteAsync();
+        Task CompleteAsync();
     }
 }

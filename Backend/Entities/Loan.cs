@@ -1,8 +1,7 @@
 ﻿namespace Backend.Entities
 {
-    public class Loan
+    public class Loan : EntityBase
     {
-        public int Id { get; set; }
         public DateTime Date { get; set; }  
         public DateTime ReturnDate { get; set; }
         public string Status { get; set; }

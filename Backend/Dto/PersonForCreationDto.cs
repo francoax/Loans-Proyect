@@ -1,6 +1,6 @@
 ﻿namespace Backend.Dto
 {
-    public class PersonToModicateDto
+    public class PersonForCreationDto
     {
         public string Name { get; set; }
         public string Email { get; set; }

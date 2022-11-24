@@ -26,9 +26,9 @@ namespace Backend.Data.Generic
             dbSet.Remove(entity);
         }
 
-        public TEntity Update(TEntity entity)
+        public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+           dbSet.Update(entity);
         }
 
         public List<TEntity> GetAll()

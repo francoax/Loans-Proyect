@@ -9,7 +9,6 @@ namespace Backend.Data.UOW
     {
         private readonly ThingsContext context;
         public ICategoryRepository CategoryRepository { get; private set; }
-
         public IThingRepository ThingRepository { get; private set; }
         public IPeopleRepository PeopleRepository { get; private set; }
 
@@ -21,9 +20,9 @@ namespace Backend.Data.UOW
             PeopleRepository = new PeopleRepository(context);
         }
 
-        public int CompleteAsync()
+        public async Task CompleteAsync()
         {
-            return context.SaveChanges();
+            await context.SaveChangesAsync();
         }
     }
 }
