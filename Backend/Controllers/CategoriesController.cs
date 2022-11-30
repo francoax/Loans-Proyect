@@ -5,7 +5,7 @@ using Backend.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Backend.Controllers.WebApi
+namespace Backend.Controllers
 {
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
@@ -19,11 +19,11 @@ namespace Backend.Controllers.WebApi
             )
         {
             this.uow = uow;
-            this._mapper = mapper;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Category>> Create([FromBody]CategoryForCreationDto category)
+        public async Task<ActionResult<Category>> Create([FromBody] CategoryForCreationDto category)
         {
             if (category.Description.IsNullOrEmpty()) return BadRequest("Especifique la descripcion");
             if (uow.CategoryRepository.GetByDesc(category.Description) is not null) return BadRequest("La categoria ya existe");
@@ -47,7 +47,7 @@ namespace Backend.Controllers.WebApi
 
         [HttpPatch]
         [Route("{id}")]
-        public async Task<ActionResult<Category>> UpdateDescription(int id, [FromBody]Category category)
+        public async Task<ActionResult<Category>> UpdateDescription(int id, [FromBody] Category category)
         {
             if (category.Description.IsNullOrEmpty()) return BadRequest("Especifique la nueva descripcion");
             var categoryToUpdate = uow.CategoryRepository.GetById(id);

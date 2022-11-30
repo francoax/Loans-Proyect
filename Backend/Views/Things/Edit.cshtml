@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Backend.Models.ThingViewModel
+
+@{
+    ViewData["Title"] = "Edit Thing";
+}
+
+<h1>Edit</h1>
+<h4>Thing -> Description : @Model.Description Category : @Model.CategoryDescription</h4>
+<hr />
+<div class="col-md-4">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id"/>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoryId" class="control-label"></label>
+            @Html.DropDownListFor(t => t.CategoryId, Model.Categories, "Categoria", new{ @class = "form-control" })
+            @Html.ValidationMessageFor(t => t.CategoryId, "", new { @class = "text-danger" })
+        </div>
+        <hr />
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to the list</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

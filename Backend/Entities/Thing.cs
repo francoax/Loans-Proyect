@@ -1,4 +1,6 @@
-﻿namespace Backend.Entities
+﻿using Backend.Dto;
+
+namespace Backend.Entities
 {
     public class Thing : EntityBase
     {

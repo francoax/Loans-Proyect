@@ -31,14 +31,14 @@ namespace Backend.Data.Generic
            dbSet.Update(entity);
         }
 
-        public List<TEntity> GetAll()
+        public virtual List<TEntity> GetAll()
         {
             List<TEntity> entities = new List<TEntity>();
             entities = dbSet.ToList();
             return entities;
         }
 
-        public TEntity? GetById(int id)
+        public virtual TEntity? GetById(int id)
         {
             return dbSet.FirstOrDefault(e => e.Id == id);
         }

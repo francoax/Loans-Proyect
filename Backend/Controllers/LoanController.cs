@@ -1,4 +1,4 @@
-﻿namespace Backend.Controllers.MVC
+﻿namespace Backend.Controllers
 {
     public class LoanController
     {
