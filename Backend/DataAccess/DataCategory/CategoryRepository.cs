@@ -1,5 +1,6 @@
 ﻿using Backend.Data.Generic;
 using Backend.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.DataAccess.DataCategory
 {
@@ -17,16 +18,9 @@ namespace Backend.DataAccess.DataCategory
             return context.Categories.Where((c) => c.Description == category.Description).Any();
         }
 
-        public override List<Category> GetAll()
+        public List<Category> GetCategoriesWithThings()
         {
-            return new List<Category>
-                        {
-                            new Category { Id = 1, Description = "Herramientas"},
-                            new Category { Id = 2, Description = "Entretenimiento"},
-                            new Category { Id = 3, Description = "Cocina"},
-                            new Category { Id = 4, Description = "Tecnologia"},
-                            new Category { Id = 5, Description = "Deportes"},
-                        };
+            return context.Categories.Include(c => c.Things).ToList();
         }
     }
 }

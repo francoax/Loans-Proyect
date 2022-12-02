@@ -2,6 +2,7 @@
 using Backend.Data.UOW;
 using Backend.Dto;
 using Backend.Entities;
+using Backend.Statics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -69,7 +70,14 @@ namespace Backend.Controllers
         [HttpGet]
         public ActionResult<List<Category>> GetAll()
         {
-            return Ok(uow.CategoryRepository.GetAll());
+            var categories = uow.CategoryRepository.GetAll();
+            return Ok(categories);
+        }
+
+        [HttpGet("things")]
+        public ActionResult<List<Category>> GetCategoriesWithThings()
+        {
+            return Ok(uow.CategoryRepository.GetCategoriesWithThings());
         }
     }
 }

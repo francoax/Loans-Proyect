@@ -2,6 +2,7 @@
 using Backend.Dto;
 using Backend.Entities;
 using Backend.Models;
+using Backend.Statics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Backend.Profiles
@@ -31,7 +32,17 @@ namespace Backend.Profiles
                 .ForMember(
                 dest => dest.Value,
                 opt => opt.MapFrom(src => $"{src.Id}"));
-                
+
+            CreateMap<Category, CategoryDto>()
+                .ForMember(
+                dest => dest.Id,
+                opt => opt.MapFrom(src => $"{src.Id}"))
+                .ForMember(
+                dest => dest.Description,
+                opt => opt.MapFrom(src => $"{src.Description}"));
+                //.ForMember(
+                //dest => dest.Things,
+                //opt => opt.MapFrom(src => $"{src.Things}"));
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Backend.Statics
 {
-    public static class PeopleExtensionMethods
+    public static class GenericExtensions
     {
         public static bool HasAnyPropertyNullOrEmpty(this object person)
         {

@@ -24,6 +24,7 @@ namespace Backend.DataAccess
         public DbSet<Person> People { get; set; }
         public DbSet<Loan> Loans { get; set; }
         public DbSet<Thing> Things { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

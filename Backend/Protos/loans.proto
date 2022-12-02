@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Backend.Protos";
+
+service ProtoLoanService {
+	rpc LoanReturned (LoanRequest) returns (LoanResponse);
+}
+
+message LoanRequest {
+
+	int32 id = 1;
+
+}
+
+message LoanResponse {
+
+	bool success = 1;
+	LoanRpc loan = 2;
+	
+}
+
+message LoanRpc{
+
+	string ReturnDate = 1;
+	string status = 2;
+	string Person = 3;
+	string Thing = 4;
+
+}

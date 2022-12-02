@@ -21,9 +21,10 @@ namespace Backend.Data.Generic
             return newEntity.Entity;
         }
 
-        public void Delete(TEntity entity)
+        public TEntity Delete(TEntity entity)
         {
-            dbSet.Remove(entity);
+            var entityDeleted = dbSet.Remove(entity);
+            return entityDeleted.Entity;
         }
 
         public void Update(TEntity entity)
@@ -42,6 +43,5 @@ namespace Backend.Data.Generic
         {
             return dbSet.FirstOrDefault(e => e.Id == id);
         }
-
     }
 }

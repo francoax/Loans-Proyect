@@ -65,9 +65,11 @@ namespace Backend.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if(id is null) return NotFound();
+            if(id is null) 
+                return NotFound();
             var thing = uow.ThingRepository.GetById(id.Value);
-            if(thing is null) return NotFound();
+            if(thing is null) 
+                return NotFound();
             ThingViewModel thingModel = mapper.Map<ThingViewModel>(thing);
             thingModel.Categories = CategoriesList();
             return View(thingModel);

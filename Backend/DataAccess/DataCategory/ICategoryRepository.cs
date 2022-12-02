@@ -8,5 +8,7 @@ namespace Backend.DataAccess.DataCategory
         Category GetByDesc(string desc);
 
         bool Exists(Category category);
+
+        List<Category> GetCategoriesWithThings();
     }
 }

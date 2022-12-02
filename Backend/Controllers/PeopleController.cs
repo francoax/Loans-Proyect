@@ -3,6 +3,7 @@ using Backend.Data.UOW;
 using Backend.Dto;
 using Backend.Entities;
 using Backend.Statics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
@@ -21,6 +22,7 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "user")]
         public async Task<ActionResult<Person>> Create([FromBody] PersonForCreationDto personToCreate)
         {
             if (personToCreate.HasAnyPropertyNullOrEmpty()) return BadRequest("Especifique correctamente la persona a crear");
@@ -32,6 +34,7 @@ namespace Backend.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize(Roles = "user")]
         public async  Task<IActionResult> Delete(int id)
         {
             var personToDelete = uow.PeopleRepository.GetById(id);
@@ -42,6 +45,7 @@ namespace Backend.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [Authorize(Roles = "user")]
         public async Task<ActionResult<Person>> Update(int id, [FromBody] PersonForModificationDto person)
         {
             var personToModificate = uow.PeopleRepository.GetById(id);
@@ -55,6 +59,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "user")]
         public ActionResult<List<Person>> GetAll()
         {
             return uow.PeopleRepository.GetAll();
@@ -62,6 +67,7 @@ namespace Backend.Controllers
 
         [HttpGet]
         [Route("{id}")]
+        [Authorize(Roles = "user")]
         public IActionResult GetById(int id)
         {
             var personRequested = uow.PeopleRepository.GetById(id);

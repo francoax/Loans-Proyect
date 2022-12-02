@@ -33,7 +33,7 @@ namespace Backend.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 24, 14, 36, 46, 106, DateTimeKind.Utc).AddTicks(5222));
+                        .HasDefaultValue(new DateTime(2022, 12, 2, 2, 20, 44, 875, DateTimeKind.Utc).AddTicks(7583));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -58,7 +58,7 @@ namespace Backend.Migrations
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReturnDate")
+                    b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
@@ -68,11 +68,16 @@ namespace Backend.Migrations
                     b.Property<int>("ThingId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PersonId");
 
                     b.HasIndex("ThingId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Loans");
                 });
@@ -102,6 +107,23 @@ namespace Backend.Migrations
                     b.ToTable("People");
                 });
 
+            modelBuilder.Entity("Backend.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
+                });
+
             modelBuilder.Entity("Backend.Entities.Thing", b =>
                 {
                     b.Property<int>("Id")
@@ -116,7 +138,7 @@ namespace Backend.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 11, 24, 14, 36, 46, 106, DateTimeKind.Utc).AddTicks(5493));
+                        .HasDefaultValue(new DateTime(2022, 12, 2, 2, 20, 44, 875, DateTimeKind.Utc).AddTicks(7841));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -127,6 +149,35 @@ namespace Backend.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Things");
+                });
+
+            modelBuilder.Entity("Backend.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RolId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Backend.Entities.Loan", b =>
@@ -143,9 +194,17 @@ namespace Backend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Backend.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Person");
 
                     b.Navigation("Thing");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Backend.Entities.Thing", b =>
@@ -157,6 +216,17 @@ namespace Backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Backend.Entities.User", b =>
+                {
+                    b.HasOne("Backend.Entities.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Backend.Entities.Category", b =>
