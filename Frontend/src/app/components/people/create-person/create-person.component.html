@@ -1,0 +1,23 @@
+
+<div class="parent">
+    <h1>Crear nueva persona</h1>
+    <form action="" [formGroup]="form" (ngSubmit)="OnSubmit(form.value)">
+        <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input type="text" matInput formControlName="name" name="name">
+            </mat-form-field>
+          
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="text" matInput formControlName="email" name="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Telefono</mat-label>
+                <input type="text" matInput formControlName="phoneNumber" name="phoneNumber">
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" type="submit" style="margin-left: 90%;">Crear</button>
+    </form>
+</div>

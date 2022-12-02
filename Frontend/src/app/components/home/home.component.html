@@ -1,1 +1,21 @@
-<p>home works!</p>
+<mat-toolbar>
+    <span>FrontEnd</span>
+    <span class="example-spacer"></span>
+    <div>
+      <button mat-button [routerLink]="['/home']">Inicio</button>
+
+      <button mat-button [matMenuTriggerFor]="belowMenu">People</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item [routerLink]="['/people/create']">Crear</button>
+        <button mat-menu-item [routerLink]="['/people/list']">Lista de personas</button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="beforeMenu">Loans</button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>Generar nuevo prestamo</button>
+        <button mat-menu-item>Cancelar prestamo</button>
+      </mat-menu>
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="Basic" (click)="logout()">Cerrar Sesion</button>
+</mat-toolbar>

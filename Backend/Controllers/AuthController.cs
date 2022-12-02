@@ -33,7 +33,7 @@ namespace Backend.Controllers
             var rolUser = uow.RolesRepository.FindRole(userToLogIn.RolId);
             userToLogIn.Role = rolUser;
 
-            var bearer = jwtHandler.GenerateToken(user, userToLogIn.Role);
+            var bearer = jwtHandler.GenerateToken(userToLogIn, userToLogIn.Role);
 
             return Ok(new
             {

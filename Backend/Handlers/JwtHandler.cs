@@ -17,7 +17,7 @@ namespace Backend.Handlers
         {
             _jwtOptions = jwtOptions?.Value ?? throw new ArgumentException(nameof(jwtOptions));
         }
-        public string GenerateToken(UserForLoginDto user, Role rol)
+        public string GenerateToken(User user, Role rol)
         {
             var signingCredentials = GetSigningCredentials();
             var claims = GetClaimsForUser(user, rol);
@@ -37,12 +37,13 @@ namespace Backend.Handlers
             return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
         }
 
-        public List<Claim> GetClaimsForUser(UserForLoginDto user, Role rol)
+        public List<Claim> GetClaimsForUser(User user, Role rol)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.username),
-                new Claim(ClaimTypes.Role, rol.Description)
+                new Claim("id", user.Id.ToString()),
+                new Claim("username", user.Username),
+                new Claim("role", rol.Description),
             };
 
             return claims;

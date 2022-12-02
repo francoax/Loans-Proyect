@@ -1,0 +1,35 @@
+<div class="parent">
+    <div>
+        <h1>Loans System - Registrarse</h1>
+    </div>
+    <div>
+        <h2>Ingrese los datos necesarios para poder registrarse.</h2>
+    </div>
+    <form class="example-form"  [formGroup]="userForm" (ngSubmit)="OnSubmit()">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username" [errorStateMatcher]="matcher" placeholder="username">
+            <mat-error *ngIf="requireWarn('username')">
+                Username <strong> {{errorMsg('username')}} </strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" [errorStateMatcher]="matcher" placeholder="**********">
+            <mat-error *ngIf="requireWarn('password')">
+                Password <strong> {{errorMsg('password')}} </strong>
+            </mat-error>
+        </mat-form-field>
+
+        <div class="buttons">
+            <a mat-raised-button class="button" (click)="RedirectToLogin()">Regresar</a>
+            <button mat-raised-button color="primary" class="button">Registrarse</button>
+        </div>
+
+    </form>
+</div>
+<footer class="parent">
+LoansProyect . Franco Duarte <strong> Grupo San Cristobal | UTN </strong>
+</footer>

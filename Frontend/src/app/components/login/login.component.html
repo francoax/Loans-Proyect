@@ -1,30 +1,31 @@
 <div class="parent">
         <div>
-            <h1>Loans System</h1>
+            <h1>Loans System - Ingresar</h1>
         </div>
-        <form class="example-form">
+        <form class="example-form" [formGroup]="formLogin" (ngSubmit)="OnSubmit()">
+
             <mat-form-field class="example-full-width">
-            <mat-label>Username</mat-label>
-            <input type="text" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                    placeholder="guest">
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-                Username is <strong>required</strong>
-            </mat-error>
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                    placeholder="**********">
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                Password is <strong>required</strong>
+                <mat-label>Username</mat-label>
+                <input type="text" matInput formControlName="username" [errorStateMatcher]="matcher" placeholder="guest" name="username">
+                <mat-error *ngIf="requireWarn('username')">
+                    Username <strong> {{errorMsg('username')}} </strong>
                 </mat-error>
             </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" [errorStateMatcher]="matcher" name="password" placeholder="**********">
+                <mat-error *ngIf="requireWarn('password')">
+                    Password <strong> {{errorMsg('password')}} </strong>
+                </mat-error>
+            </mat-form-field>
+
             <div class="buttons">
-                <button mat-raised-button class="button">Sign up</button>
-                <button mat-raised-button color="primary" class="button">Log in</button>
+                <a mat-raised-button class="button" (click)="register()">Registrarse</a>
+                <button [disabled]="loading" mat-raised-button color="primary" class="button">
+                    Ingresar
+                </button>
             </div>
         </form>
+        <span *ngIf="loading" class="spinner"> <mat-progress-spinner [color]="color" [mode]="mode" [value]="value" [diameter]="diameter"></mat-progress-spinner> </span>
 </div>
-<footer class="parent">
-    LoansProyect . Franco Duarte <strong> Grupo San Cristobal | UTN </strong>
-</footer>
