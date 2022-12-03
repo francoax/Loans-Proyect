@@ -18,8 +18,6 @@ namespace Backend.DataAccess
                 .Property(t => t.CreationDate)
                 .HasDefaultValue(DateTime.UtcNow);
         }
-
-
         public DbSet<Category> Categories { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Loan> Loans { get; set; }

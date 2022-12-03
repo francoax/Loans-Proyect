@@ -1,1 +1,30 @@
-<p>edit-person works!</p>
+<div class="parent">
+    <h1>Editar persona</h1>
+    <h2>Actual Informacion</h2>
+    <mat-hint>Complete todos los campos</mat-hint>
+    <br>
+
+    <p>Nombre : <strong> {{personToEdit.name}} </strong> Email: <strong> {{personToEdit.email}} </strong> Telefono: <strong> {{personToEdit.phoneNumber}} </strong> </p>
+    <form action="" [formGroup]="form" (ngSubmit)="OnSubmit(form.value)">
+        <div class="example-container">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input type="text" matInput formControlName="name" name="name">
+            </mat-form-field>
+          
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="text" matInput formControlName="email" name="email">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Telefono</mat-label>
+                <input type="text" matInput formControlName="phoneNumber" name="phoneNumber">
+            </mat-form-field>
+          </div>
+          <div class="left">
+            <button mat-raised-button class="button" routerLink="/people/list">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit">Editar</button>
+          </div>
+    </form>
+</div>

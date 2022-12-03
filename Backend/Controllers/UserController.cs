@@ -29,7 +29,7 @@ namespace Backend.Controllers
 
             var newUser = mapper.Map<User>(userToRegister);
             var roleUser = uow.RolesRepository.GetRole("user");
-            newUser.RolId = roleUser.Id;
+            newUser.RoleId = roleUser.Id;
 
             uow.UsersRepository.Add(newUser);
             uow.CompleteAsync();
@@ -45,7 +45,7 @@ namespace Backend.Controllers
             if (user is null)
                 return NotFound("Usuario no encontrado");
 
-            var role = uow.RolesRepository.GetRole(user.RolId);
+            var role = uow.RolesRepository.GetRole(user.RoleId);
             user.Role = role;
 
             var userMapped = mapper.Map<UserDto>(user);

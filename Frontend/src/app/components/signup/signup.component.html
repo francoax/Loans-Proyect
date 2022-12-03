@@ -5,7 +5,7 @@
     <div>
         <h2>Ingrese los datos necesarios para poder registrarse.</h2>
     </div>
-    <form class="example-form"  [formGroup]="userForm" (ngSubmit)="OnSubmit()">
+    <form class="example-form"  [formGroup]="userForm" (ngSubmit)="OnSubmit(userForm.value)">
 
         <mat-form-field class="example-full-width">
             <mat-label>Username</mat-label>
@@ -25,7 +25,7 @@
 
         <div class="buttons">
             <a mat-raised-button class="button" (click)="RedirectToLogin()">Regresar</a>
-            <button mat-raised-button color="primary" class="button">Registrarse</button>
+            <button mat-raised-button color="primary" type="submit" class="button">Registrarse</button>
         </div>
 
     </form>

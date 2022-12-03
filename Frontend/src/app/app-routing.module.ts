@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreatePersonComponent } from './components/people/create-person/create-person.component';
 import { DeletePersonComponent } from './components/people/delete-person/delete-person.component';
+import { EditPersonComponent } from './components/people/edit-person/edit-person.component';
 import { ListPeopleComponent } from './components/people/list-people/list-people.component';
 import { PeopleComponent } from './components/people/people.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -16,7 +17,7 @@ const routes: Routes = [
       {path: 'create', component: CreatePersonComponent},
       {path: 'list', component: ListPeopleComponent},
       {path: 'delete/:id', component: DeletePersonComponent},
-      {path: 'edit/:id', component: DeletePersonComponent}]},
+      {path: 'edit/:id', component: EditPersonComponent}]},
   { path: 'login', component: LoginComponent},
   { path : 'signup', component: SignupComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full'}

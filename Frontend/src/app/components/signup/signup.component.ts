@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { NotificationService } from 'src/app/services/Notifications/notification.service';
+import { UserService } from 'src/app/services/User/user.service';
 import { MyErrorStateMatcher } from '../login/login.component';
 
 @Component({
@@ -12,11 +15,11 @@ export class SignupComponent implements OnInit {
 
   userForm! : FormGroup;
 
-  constructor(private formBuilder : FormBuilder, private router : Router) { 
+  constructor(private formBuilder : FormBuilder, private router : Router, private service : UserService, private notification : NotificationService) { 
 
     this.userForm = this.formBuilder.group({
       username : ['', [Validators.required, Validators.minLength(4)]],
-      password : ['', [Validators.required, Validators.minLength(5)]]
+      password : ['', [Validators.required, Validators.minLength(4)]]
     })
 
   }
@@ -28,8 +31,18 @@ export class SignupComponent implements OnInit {
 
   }
 
-  OnSubmit() : void{
-
+  OnSubmit(user : User) : void {
+    if(!this.userForm.valid){
+      this.userForm.markAllAsTouched();
+      this.notification.showMessage("El formulario no es valido");
+      return;
+    }
+    this.service.signup(user).subscribe({
+      next : (response : any) => {
+        this.notification.showMessage("Registro completado con exito. Ya puedes iniciar sesion.");
+        this.router.navigate(['/people/list']);
+      }
+    })
   }
 
   private warnMessages : {type : string, msg : string}[] = [

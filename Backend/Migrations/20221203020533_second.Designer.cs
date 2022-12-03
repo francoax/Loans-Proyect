@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ThingsContext))]
-    [Migration("20221202022045_fixed")]
-    partial class @fixed
+    [Migration("20221203020533_second")]
+    partial class second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace Backend.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 12, 2, 2, 20, 44, 875, DateTimeKind.Utc).AddTicks(7583));
+                        .HasDefaultValue(new DateTime(2022, 12, 3, 2, 5, 33, 75, DateTimeKind.Utc).AddTicks(9609));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -110,23 +110,6 @@ namespace Backend.Migrations
                     b.ToTable("People");
                 });
 
-            modelBuilder.Entity("Backend.Entities.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Role");
-                });
-
             modelBuilder.Entity("Backend.Entities.Thing", b =>
                 {
                     b.Property<int>("Id")
@@ -141,7 +124,7 @@ namespace Backend.Migrations
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 12, 2, 2, 20, 44, 875, DateTimeKind.Utc).AddTicks(7841));
+                        .HasDefaultValue(new DateTime(2022, 12, 3, 2, 5, 33, 75, DateTimeKind.Utc).AddTicks(9789));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -166,9 +149,6 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RolId")
-                        .HasColumnType("int");
-
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
@@ -177,8 +157,6 @@ namespace Backend.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -219,17 +197,6 @@ namespace Backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Backend.Entities.User", b =>
-                {
-                    b.HasOne("Backend.Entities.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("Backend.Entities.Category", b =>

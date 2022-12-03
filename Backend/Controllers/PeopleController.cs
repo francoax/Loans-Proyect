@@ -39,8 +39,9 @@ namespace Backend.Controllers
         {
             var personToDelete = uow.PeopleRepository.GetById(id);
             if (personToDelete is null) return BadRequest("Persona no encontrada");
+            uow.PeopleRepository.Delete(personToDelete);
             await uow.CompleteAsync();
-            return NoContent();
+            return Ok(personToDelete);
         }
 
         [HttpPut]

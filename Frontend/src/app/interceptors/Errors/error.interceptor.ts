@@ -21,21 +21,21 @@ export class ErrorInterceptor implements HttpInterceptor {
       if(err instanceof HttpErrorResponse) {
         switch(err.status){
           case 400 : {
-            this.notificationService.showMessage("El servidor no pudo responer a la solicitud.")
+            this.notificationService.showMessage(err.error)
             break;
           }
           case 401: {            
-            this.notificationService.showMessage("Usted no se encuentra autenticado.")
+            this.notificationService.showMessage(err.error)
             this.authenticationService.logOut();
             break;
           }
           case 403: {            
-            this.notificationService.showMessage("Usted no esta autorizado.")
+            this.notificationService.showMessage(err.error)
             this.authenticationService.logOut();
             break;
           }
           case 404: {            
-            this.notificationService.showMessage("El elemento no fue encontrado.")
+            this.notificationService.showMessage(err.error)
             break;
           }
           case 500: {            

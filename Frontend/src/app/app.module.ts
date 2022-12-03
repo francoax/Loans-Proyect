@@ -25,6 +25,7 @@ import { CreatePersonComponent } from './components/people/create-person/create-
 import { DeletePersonComponent } from './components/people/delete-person/delete-person.component';
 import { EditPersonComponent } from './components/people/edit-person/edit-person.component';
 import { ListPeopleComponent } from './components/people/list-people/list-people.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ListPeopleComponent } from './components/people/list-people/list-people
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

@@ -19,12 +19,16 @@ export class PeopleService {
     return this.http.put<Person>(`${environment.api}/people/${person.id}`, person);
   }
 
-  delete(id : number) : void {
-    this.http.delete(`${environment.api}/people/${id}`);
+  delete(id : number) : Observable<Person> {
+    return this.http.delete(`${environment.api}/people/${id}`);
   }
 
   getAll() : Observable<Person[]> {
     return this.http.get<Person[]>(`${environment.api}/people`)
+  }
+
+  getOne(id : number) : Observable<Person> {
+    return this.http.get<Person>(`${environment.api}/people/${id}`)
   }
 
 

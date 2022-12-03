@@ -30,7 +30,7 @@ namespace Backend.Controllers
             if (userToLogIn is null) 
                 return NotFound("Usuarios y/o contraseñas incorrectos");
 
-            var rolUser = uow.RolesRepository.FindRole(userToLogIn.RolId);
+            var rolUser = uow.RolesRepository.FindRole(userToLogIn.RoleId);
             userToLogIn.Role = rolUser;
 
             var bearer = jwtHandler.GenerateToken(userToLogIn, userToLogIn.Role);

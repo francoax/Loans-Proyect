@@ -1,1 +1,8 @@
-<p>delete-person works!</p>
+<div class="parent">
+    <h1>Estas seguro que quieres eliminar <strong>{{personToDelete.name}}</strong> ?</h1>
+    <p>Email <strong>{{personToDelete.email}}</strong> Telefono <strong>{{personToDelete.phoneNumber}}</strong></p>
+    <div class="buttons">
+        <button mat-raised-button class="button" routerLink="/people/list">Cancelar</button>
+        <button mat-raised-button color="warn" class="button" (click)="delete()">Eliminar</button>
+    </div>
+</div>
