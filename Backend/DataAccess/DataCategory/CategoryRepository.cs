@@ -22,5 +22,10 @@ namespace Backend.DataAccess.DataCategory
         {
             return context.Categories.Include(c => c.Things).ToList();
         }
+
+        public void AddMany(List<Category> categories)
+        {
+            context.Categories.AddRange(categories);
+        }
     }
 }

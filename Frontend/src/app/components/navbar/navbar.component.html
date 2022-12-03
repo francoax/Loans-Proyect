@@ -1,0 +1,22 @@
+<mat-toolbar>
+    <span>FrontEnd</span>
+    <span class="example-spacer"></span>
+    <div>
+      <button mat-button [routerLink]="['/home']">Inicio</button>
+
+      
+      <button mat-button [matMenuTriggerFor]="belowMenu">Personas</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item [routerLink]="['/people/create']">Crear persona</button>
+        <button mat-menu-item [routerLink]="['/people/list']">Lista de personas</button>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="afterMenu">Categorias</button>
+      <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item [routerLink]="['/categories']">Generar categorias predeterminadas</button>
+      </mat-menu>
+
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="Basic" (click)="logout()">Cerrar Sesion</button>
+</mat-toolbar>

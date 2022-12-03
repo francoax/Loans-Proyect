@@ -58,7 +58,7 @@ namespace Backend.Controllers
         {
             var loanToDelete = uow.LoansRepository.GetById(id);
             if (loanToDelete is null)
-                return NotFound("El prestamo solicitado no fue encontrado.");
+                return NotFound("Loan not found");
 
             uow.LoansRepository.Delete(loanToDelete);
             uow.CompleteAsync();
@@ -72,7 +72,7 @@ namespace Backend.Controllers
         {
             var loan = uow.LoansRepository.GetById(id);
             if (loan is null) 
-                return NotFound("El prestamo solicitado no fue encontrado.");
+                return NotFound("Loan not found");
 
             return Ok(loan);
         }

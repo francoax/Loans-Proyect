@@ -35,6 +35,32 @@ namespace Backend.Controllers
 
         }
 
+        [HttpPost("default")]
+        public async Task<ActionResult> CreateCategories([FromBody] CategoryForCreationDto[] categories)
+        {
+            var currentCategories = uow.CategoryRepository.GetAll();
+            foreach (var cat in currentCategories)
+            {
+                foreach (var tocat in categories)
+                {
+                    if (cat.Description.Equals(tocat.Description))
+                    {
+                        return BadRequest($"La cateogoria {tocat.Description} ya existe");
+                    }
+                }
+            }
+            if (categories.IsNullOrEmpty()) return BadRequest("Especifique las categorias a crear.");
+            foreach(var category in categories)
+            {
+                if(category.Description.IsNullOrEmpty()) return BadRequest("No debe haber descripciones vacias");
+            }
+            var _mappedCategories = _mapper.Map<List<Category>>(categories);
+            uow.CategoryRepository.AddMany(_mappedCategories);
+            await uow.CompleteAsync();
+            return Ok("Categorias creadas");
+
+        }
+
         [HttpDelete]
         [Route("{id}")]
         public async Task<ActionResult<Category>> Delete(int id)

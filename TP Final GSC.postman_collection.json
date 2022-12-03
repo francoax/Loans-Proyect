@@ -142,7 +142,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"thingid\" : 1,\r\n    \"personid\" : 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

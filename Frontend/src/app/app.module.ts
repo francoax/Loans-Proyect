@@ -26,6 +26,8 @@ import { DeletePersonComponent } from './components/people/delete-person/delete-
 import { EditPersonComponent } from './components/people/edit-person/edit-person.component';
 import { ListPeopleComponent } from './components/people/list-people/list-people.component';
 import {MatTableModule} from '@angular/material/table';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {MatTableModule} from '@angular/material/table';
     CreatePersonComponent,
     DeletePersonComponent,
     EditPersonComponent,
-    ListPeopleComponent
+    ListPeopleComponent,
+    NavbarComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

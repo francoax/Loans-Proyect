@@ -10,5 +10,7 @@ namespace Backend.DataAccess.DataCategory
         bool Exists(Category category);
 
         List<Category> GetCategoriesWithThings();
+
+        void AddMany(List<Category> categories);
     }
 }

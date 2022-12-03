@@ -18,10 +18,10 @@ namespace Backend.Protos
             var loan = uow.LoansRepository.GetById(request.Id);
             if (loan is null) 
                 return new LoanResponse { Loan = new LoanRpc(), Success = false };
-            if(loan.Status.Equals("Returned"))
+            if(loan.Status.Equals("Devuelto"))
                 return new LoanResponse { Loan = new LoanRpc(), Success = false };
 
-            loan.Status = "Returned";
+            loan.Status = "Devuelto";
             loan.ReturnDate = DateTime.UtcNow;
 
             uow.LoansRepository.Update(loan);
